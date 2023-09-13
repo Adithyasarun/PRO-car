@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Car</title>
+
+        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
+        <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
+        <script src="https://recast-api.donmccurdy.com/aframe-inspector-plugin-recast.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+
+        <script src="./drive.js"></script>
+        <script src="./game.js"></script>
+    </head>
+
+    <body>
+        <a-scene background="color: blue">
+            <a-assets>
+                <a-assets-item src="./assets/low_poly_city/scene.gltf" id="city"></a-assets-item>
+
+                <a-assets-item src="./assets/steering_wheel/scene.gltf" id="wheel"></a-assets-item>
+
+                <a-assets-item src="./assets/acc.png" id="acc"></a-assets-item>
+
+                <a-assets-item src="./assets/break.png" id="break"></a-assets-item>
+                
+                <audio id="cars" src="./assets/sounds/Car-Driving-B3-www.fesliyanstudios.com.mp3">
+            </a-assets>
+
+            <a-entity id="navigation-mesh" gltf-model="#collider" position="0 10 0" visible="false" nav-mesh>
+            </a-entity>
+
+            
+            <a-entity light="type: ambient; color: white; intensity:2"></a-entity>
+           
+            <a-entity id="city" gltf-model="#city" rotation="0 90 0" scale="1 1 1"></a-entity>
+
+            <a-box id="box1" material="height:200" color="green" geometry="height: 10; width: 304" position="60 -3 -9" rotation="0 90 0"></a-box>
+
+            <a-box id="box1" material="height:200" color="green" geometry="height: 10; width: 304" position="-82 -3 -9" rotation="0 90 0"></a-box>
+
+            <a-box id="box1" material="height:200" color="green" geometry="height: 10; width: 198" position="-9 -3 140" rotation="90 0 0"></a-box>
+
+            <a-box id="box1" material="height:200" color="green" geometry="height: 10; width: 198" position="-9 -3 -160" rotation="90 0 0"></a-box>
+
+            
+            <a-entity id="camera-rig" movement-controls="speed: 0.5; constrainToNavMesh: true" position="0 1 5" rotation="0 0 0" drive game="play">
+
+                <a-entity id="camera" camera position="0 1.6 0" rotation="0 0 0" look-controls="pointerLockEnabled: false"> 
+
+                    <a-entity id="stWheel" gltf-model="#wheel" scale="0.001 0.001 0.001" position="0.13 -0.120 -0.163"></a-entity>
+
+                    <a-box id="acc" src="#acc" position="-0.420 -0.23391 -0.37136" rotation="0 0 0" scale="0.05 0.1 0.001"></a-box>
+
+                    <a-box id="bre" src="./assets/break.png" position="-0.289 -0.23391 -0.37136" rotation="0 0 0" scale="0.05 0.1 0.001"></a-box>
+
+                    <a-entity id="acct" position="-6.5 -5.7 -7.16344" text="font: kelsonsans; width:5; height: 2;value: 'Arrow up'"></a-entity>
+
+                    <a-entity id="bret" position="-3.8 -5.7 -7.16344" text="font: kelsonsans; width:5; height: 2;value: 'Spacebar key'"></a-entity>
+
+                    <a-entity id="time" position="0 5 -7.1" text="font: kelsonsans; align: center; width: 10; color: black; value: 00:00"></a-entity>
+
+                    <a-entity id="speed" position="4 -5 -7.16" text="font: kelsonsans; align: center; width: 10; color: black; value: 10">
+                        <a-entity id="unit" position="1 0 0" text="font: kelsonsans; align: center; width: 10; color: black; value: Km/h"></a-entity>
+                    </a-entity>
+
+                    <a-entity id="over" position="1.7 1 -3" text="font: kelsonsans; align: center; width: 10; color: black; value: Keep Trying" visible="false"></a-entity>
+                
+                </a-entity>
+            </a-entity>
+        </a-scene> 
+        
+        
+    </body>
+</html>
